@@ -21,7 +21,7 @@ const Home = () => {
                 putTasks(task);
             })
         }
-    }, [tasks])
+    }, [currentUser, tasks])
 
     useEffect(() => {
         const getPastTasks = async () => {
@@ -40,7 +40,7 @@ const Home = () => {
         if (currentUser) {
             getPastTasks();
         }
-    }, [])
+    }, [currentUser])
 
     useEffect(() => {
         if (tasks != null) {
