@@ -36,7 +36,7 @@ const Edit = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetch(process.env.REACT_APP_BASE_URL + 'edit/task', {
+        const response = await fetch(process.env.REACT_APP_BASE_URL + '/edit/task', {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ const Edit = () => {
             body: JSON.stringify(temp_task)
         })
         if (response.status === 200) {
-            const res = await fetch(process.env.REACT_APP_BASE_URL + 'get/tasks', {
+            const res = await fetch(process.env.REACT_APP_BASE_URL + '/get/tasks', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -42,7 +42,7 @@ const Create = () => {
     const onSubmitHandler = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch(process.env.REACT_APP_BASE_URLCKEND_URL + 'create-task', {
+            const response = await fetch(process.env.REACT_APP_BASE_URL + '/create-task', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ const Create = () => {
                 body: JSON.stringify(fields)
             })
             if (response.status === 200) {
-                const res = await fetch(process.env.REACT_APP_BASE_URL + 'get/tasks', {
+                const res = await fetch(process.env.REACT_APP_BASE_URL + '/get/tasks', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

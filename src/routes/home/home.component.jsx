@@ -25,7 +25,7 @@ const Home = () => {
 
     useEffect(() => {
         const getPastTasks = async () => {
-            const response = await fetch(process.env.REACT_APP_BASE_URL + 'get/pasttasks', {
+            const response = await fetch(process.env.REACT_APP_BASE_URL + '/get/pasttasks', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

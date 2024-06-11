@@ -1,6 +1,6 @@
 export const deleteTheTask = async (_id, currentUser) => {
     try {
-        const response = await fetch(process.env.REACT_APP_BASE_URL + 'delete/task', {
+        const response = await fetch(process.env.REACT_APP_BASE_URL + '/delete/task', {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json'
@@ -9,7 +9,7 @@ export const deleteTheTask = async (_id, currentUser) => {
         });
 
         if (response.status === 200) {
-            const res = await fetch(process.env.REACT_APP_BASE_URL + 'get/tasks', {
+            const res = await fetch(process.env.REACT_APP_BASE_URL + '/get/tasks', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
