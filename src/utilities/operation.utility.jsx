@@ -3,6 +3,7 @@ export const deleteTheTask = async (_id, currentUser) => {
         const response = await fetch(process.env.REACT_APP_BASE_URL + '/delete/task', {
             method: "DELETE",
             headers: {
+                'Access-Control-Allow-Origin': process.env.REACT_APP_CLIENT,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ id: _id })
@@ -12,6 +13,7 @@ export const deleteTheTask = async (_id, currentUser) => {
             const res = await fetch(process.env.REACT_APP_BASE_URL + '/get/tasks', {
                 method: 'POST',
                 headers: {
+                    'Access-Control-Allow-Origin': process.env.REACT_APP_CLIENT,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(currentUser)

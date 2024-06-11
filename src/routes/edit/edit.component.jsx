@@ -39,6 +39,7 @@ const Edit = () => {
         const response = await fetch(process.env.REACT_APP_BASE_URL + '/edit/task', {
             method: "PATCH",
             headers: {
+                'Access-Control-Allow-Origin': process.env.REACT_APP_CLIENT,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(temp_task)
@@ -47,6 +48,7 @@ const Edit = () => {
             const res = await fetch(process.env.REACT_APP_BASE_URL + '/get/tasks', {
                 method: 'POST',
                 headers: {
+                    'Access-Control-Allow-Origin': process.env.REACT_APP_CLIENT,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(currentUser)
