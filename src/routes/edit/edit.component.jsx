@@ -38,8 +38,8 @@ const Edit = () => {
         event.preventDefault();
         const response = await fetch(process.env.REACT_APP_BASE_URL + '/edit/task', {
             method: "PATCH",
+            mode: 'no-cors',
             headers: {
-                'mode': 'no-cors',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(temp_task)

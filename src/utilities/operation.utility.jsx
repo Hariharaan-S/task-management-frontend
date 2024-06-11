@@ -12,8 +12,8 @@ export const deleteTheTask = async (_id, currentUser) => {
         if (response.status === 200) {
             const res = await fetch(process.env.REACT_APP_BASE_URL + '/get/tasks', {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
-                    'mode': 'no-cors',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(currentUser)
