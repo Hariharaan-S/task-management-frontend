@@ -45,7 +45,7 @@ const Create = () => {
             const response = await fetch(process.env.REACT_APP_BASE_URL + '/create-task', {
                 method: "POST",
                 headers: {
-                    'Access-Control-Allow-Origin': process.env.REACT_APP_CLIENT,
+                    'mode': 'no-cors',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(fields)
@@ -54,7 +54,7 @@ const Create = () => {
                 const res = await fetch(process.env.REACT_APP_BASE_URL + '/get/tasks', {
                     method: 'POST',
                     headers: {
-                        'Access-Control-Allow-Origin': process.env.REACT_APP_CLIENT,
+                        'mode': 'no-cors',
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(currentUser)
