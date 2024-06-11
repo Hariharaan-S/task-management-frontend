@@ -1,11 +1,9 @@
 import { useContext, useState } from "react";
-
 import FormInput from "../../components/form-input/form-input.component.jsx";
 import Button from "../../components/button/button.component.jsx";
 import { SignInContainer } from "./sign-in.styles.jsx";
 import { UserContext } from "../../context/user.context.jsx";
 import { useNavigate } from "react-router";
-import { BASE_BACKEND_URL } from "../../config.js";
 
 
 
@@ -35,7 +33,7 @@ const SignIn = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch(BASE_BACKEND_URL + 'auth/login', {
+      const response = await fetch(process.env.REACT_APP_BASE_URL + 'auth/login', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'

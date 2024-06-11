@@ -7,7 +7,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TaskContext } from '../../context/taskContext';
 import { UserContext } from '../../context/user.context';
-import { BASE_BACKEND_URL } from '../../config';
 
 const Edit = () => {
     const params = useParams();
@@ -37,7 +36,7 @@ const Edit = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetch(BASE_BACKEND_URL + 'edit/task', {
+        const response = await fetch(process.env.REACT_APP_BASE_URL + 'edit/task', {
             method: "PATCH",
             headers: {
                 'Content-Type': 'application/json'
@@ -45,7 +44,7 @@ const Edit = () => {
             body: JSON.stringify(temp_task)
         })
         if (response.status === 200) {
-            const res = await fetch(BASE_BACKEND_URL + 'get/tasks', {
+            const res = await fetch(process.env.REACT_APP_BASE_URL + 'get/tasks', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

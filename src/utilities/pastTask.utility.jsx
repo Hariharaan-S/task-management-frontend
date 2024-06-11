@@ -1,6 +1,6 @@
 
 export const putTasks = async (task) => {
-    await fetch('http://localhost:5000/past', {
+    await fetch(process.env.REACT_APP_BASE_URL + 'past', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'

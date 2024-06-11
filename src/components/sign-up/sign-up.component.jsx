@@ -4,9 +4,6 @@ import FormInput from "../form-input/form-input.component.jsx";
 import Button from "../button/button.component.jsx";
 import { SignUpContainer } from "./sign-up.styles.jsx";
 import { UserContext } from "../../context/user.context.jsx";
-import { BASE_BACKEND_URL } from "../../config.js";
-
-
 
 const defaultFields = {
   displayName: "",
@@ -45,7 +42,7 @@ const SignUp = () => {
 
     try {
 
-      const response = await fetch(BASE_BACKEND_URL + 'auth/register', {
+      const response = await fetch(process.env.REACT_APP_BASE_URL + 'auth/register', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
