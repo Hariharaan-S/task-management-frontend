@@ -5,6 +5,7 @@ import { TaskCount, PastTask } from './home.styles';
 import { putTasks } from '../../utilities/pastTask.utility';
 import { UserContext } from '../../context/user.context';
 import { TaskWrapper } from '../../components/task/tasks.styles';
+import { BASE_BACKEND_URL } from '../../config';
 
 const Home = () => {
     const { currentUser } = useContext(UserContext)
@@ -25,7 +26,7 @@ const Home = () => {
 
     useEffect(() => {
         const getPastTasks = async () => {
-            const response = await fetch('http://localhost:5000/get/pasttasks', {
+            const response = await fetch(BASE_BACKEND_URL + 'get/pasttasks', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

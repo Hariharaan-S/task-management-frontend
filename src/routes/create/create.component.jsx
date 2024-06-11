@@ -8,6 +8,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { UserContext } from '../../context/user.context';
 import indianLocale from 'dayjs/locale/en-in';
+import { BASE_BACKEND_URL } from '../../config';
 
 const Create = () => {
     const { currentUser } = useContext(UserContext)
@@ -42,7 +43,7 @@ const Create = () => {
     const onSubmitHandler = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/create-task', {
+            const response = await fetch(BASE_BACKEND_URL + 'create-task', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -50,7 +51,7 @@ const Create = () => {
                 body: JSON.stringify(fields)
             })
             if (response.status === 200) {
-                const res = await fetch('http://localhost:5000/get/tasks', {
+                const res = await fetch(BASE_BACKEND_URL + 'get/tasks', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

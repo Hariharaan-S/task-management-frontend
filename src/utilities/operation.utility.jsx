@@ -1,6 +1,8 @@
+import { BASE_BACKEND_URL } from "../config";
+
 export const deleteTheTask = async (_id, currentUser) => {
     try {
-        const response = await fetch('http://localhost:5000/delete/task', {
+        const response = await fetch(BASE_BACKEND_URL + 'delete/task', {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json'
@@ -9,7 +11,7 @@ export const deleteTheTask = async (_id, currentUser) => {
         });
 
         if (response.status === 200) {
-            const res = await fetch('http://localhost:5000/get/tasks', {
+            const res = await fetch(BASE_BACKEND_URL + 'get/tasks', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
