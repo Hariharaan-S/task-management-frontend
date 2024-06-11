@@ -15,7 +15,7 @@ const defaultFields = {
 
 const SignUp = () => {
 
-  const { currentUser, setCurrentUser } = useContext(UserContext)
+  const { setCurrentUser } = useContext(UserContext)
   const navigate = useNavigate()
 
   const [formFields, setFormFields] = useState(defaultFields);

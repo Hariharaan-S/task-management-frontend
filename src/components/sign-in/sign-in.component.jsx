@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 
 import FormInput from "../../components/form-input/form-input.component.jsx";
-import Button, { BUTTON_TYPE_CLASSES } from "../../components/button/button.component.jsx";
+import Button from "../../components/button/button.component.jsx";
 import { SignInContainer } from "./sign-in.styles.jsx";
 import { UserContext } from "../../context/user.context.jsx";
 import { useNavigate } from "react-router";
@@ -15,7 +15,7 @@ const defaultFields = {
 
 const SignIn = () => {
 
-  const { currentUser, setCurrentUser } = useContext(UserContext)
+  const { setCurrentUser } = useContext(UserContext)
   const navigate = useNavigate()
 
   const [formFields, setFormFields] = useState(defaultFields);

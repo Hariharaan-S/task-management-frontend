@@ -28,7 +28,7 @@ export const PastTask = styled.div`
     h2{
         font-size: 1.6rem;
         font-weight: 500;
-        color: ${({ colorIndex }) => colors[colorIndex]}
+        color: ${({ colorindex }) => colors[colorindex]}
     }
     @media (max-width: 768px){
         display: flex;

@@ -7,18 +7,20 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { UserContext } from '../../context/user.context';
+import indianLocale from 'dayjs/locale/en-in';
 
 const Create = () => {
     const { currentUser } = useContext(UserContext)
     const defaultFields = {
-        id: currentUser.id,
+        task_id: "",
+        u_id: currentUser.id,
         title: "",
         description: "",
         date: ""
     };
     const [fields, setFields] = useState(defaultFields);
-    const { title, description, date } = fields;
-    const { tasks, setTasks } = useContext(TaskContext)
+    const { title, description } = fields;
+    const { setTasks } = useContext(TaskContext)
     const navigate = useNavigate()
 
     const handleChange = (event) => {
@@ -31,7 +33,10 @@ const Create = () => {
     };
 
     const handleDateChange = (newDate) => {
-        setFields({ ...fields, date: newDate ? newDate : null });
+        if (newDate) {
+            setFields({ ...fields, date: newDate ? newDate : null });
+        }
+
     };
 
     const onSubmitHandler = async (event) => {
@@ -53,7 +58,7 @@ const Create = () => {
                     body: JSON.stringify(currentUser)
                 })
                 if (res.status === 200) {
-                    setTasks(res.json().message)
+                    setTasks(await res.json().message)
                     navigate('/')
                 }
             }
@@ -76,7 +81,7 @@ const Create = () => {
                             <textarea className='descArea' name="description" id="description" cols="50" rows="10" value={description} onChange={handleChange}></textarea>
                         </FormInput>
                         <FormInput><label htmlFor="date">Due Date</label>
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={indianLocale}>
                                 <DatePicker onChange={handleDateChange} />
                             </LocalizationProvider>
                         </FormInput>

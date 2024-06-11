@@ -20,9 +20,6 @@ const Home = () => {
             temp_tasks.forEach(task => {
                 putTasks(task);
             })
-
-
-
         }
     }, [tasks])
 
@@ -43,7 +40,7 @@ const Home = () => {
         if (currentUser) {
             getPastTasks();
         }
-    }, [tasks])
+    }, [])
 
     useEffect(() => {
         if (tasks != null) {
@@ -65,17 +62,17 @@ const Home = () => {
     return (
         <div>
             <TaskCount>
-                <PastTask colorIndex={0}>
+                <PastTask colorindex={0}>
                     <h2>{total}</h2>
                     <p>Total Tasks created</p>
 
                 </PastTask>
-                <PastTask colorIndex={1}>
+                <PastTask colorindex={1}>
                     <h2>{doneTasks}</h2>
                     <p>Tasks Done</p>
 
                 </PastTask>
-                <PastTask colorIndex={2}>
+                <PastTask colorindex={2}>
                     <h2>{dueTasks}</h2>
                     <p>Tasks due past</p>
 

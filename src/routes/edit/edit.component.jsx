@@ -15,7 +15,8 @@ const Edit = () => {
     const navigate = useNavigate()
 
     const defaultField = {
-        id: currentUser.id,
+        task_id: "",
+        u_id: currentUser.id,
         title: "",
         description: "",
         due_date: ""
@@ -23,20 +24,14 @@ const Edit = () => {
 
     const [temp_task, setTemp] = useState(defaultField)
     useEffect(() => {
-        const identifiedTask = tasks.filter(task => task.id === params.id)
+        const identifiedTask = tasks.filter(task => task.task_id === params.id)
         const task = identifiedTask[0]
         setTemp(task)
-    }, [])
+    }, [params.id, tasks])
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
-        let updatedValue = value;
-
-        if (name === 'date') {
-            updatedValue = new Date(value).getTime();
-        }
-
-        setTemp({ ...temp_task, [name]: updatedValue });
+        setTemp({ ...temp_task, [temp_task.due_date]: event.$d });
+        setTemp({ ...temp_task, [temp_task.task_id]: params.id })
     };
 
     const handleSubmit = async (event) => {

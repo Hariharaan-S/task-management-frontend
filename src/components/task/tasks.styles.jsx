@@ -14,15 +14,6 @@ const grey = {
   900: '#1C2025',
 };
 
-const blue = {
-  200: '#99CCFF',
-  300: '#66B2FF',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-  700: '#0066CC',
-};
-
 export const PopupBody = styled('div')(
   ({ theme }) => `
     width: max-content;
@@ -83,7 +74,6 @@ export const TaskDiv = styled('div')(
         display: flex;
         max-width: 100%;
         flex-direction: column;
-        row-gap: 0rem;
         align-items: center;
     }
   `
@@ -95,9 +85,10 @@ export const TaskWrapper = styled('div')(
     flex-direction: row;
     column-gap: 3rem;
     @media (max-width: 768px){
+    position: relative;
         display: flex;
         flex-direction: column;
-        row-gap: 0rem;
+        row-gap: 2rem;
         align-items: center;
     }
   `

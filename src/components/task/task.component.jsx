@@ -1,7 +1,7 @@
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { PopupBody, Button, ButtonWrapper, TaskDiv, TaskWrapper } from './tasks.styles'
+import { PopupBody, Button, ButtonWrapper, TaskDiv } from './tasks.styles'
 import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import { useNavigate } from 'react-router';
 import { useContext, useState } from 'react';
@@ -10,13 +10,13 @@ import { deleteTheTask } from '../../utilities/operation.utility';
 import { UserContext } from '../../context/user.context';
 
 const Task = ({ option, past }) => {
-    const { _id, title, description, due_date } = option
+    const { task_id, title, description, due_date } = option
     const { currentUser } = useContext(UserContext)
     var date = new Date(due_date)
     date = date.toDateString()
-    const { tasks, setTasks } = useContext(TaskContext)
+    const { setTasks } = useContext(TaskContext)
     const navigate = useNavigate()
-    const NavigateHandler = () => navigate('/edit/' + currentUser.id)
+    const NavigateHandler = () => navigate('/edit/' + task_id)
     const [anchor, setAnchor] = useState(null);
 
     const handleClick = (event) => {
@@ -27,13 +27,13 @@ const Task = ({ option, past }) => {
     const id = open ? 'simple-popper' : undefined;
 
     const deleteFunction = async () => {
-        const updatedTasks = await deleteTheTask(_id, currentUser)
+        const updatedTasks = await deleteTheTask(task_id, currentUser)
         setTasks(updatedTasks)
 
     }
 
     return (
-        <TaskDiv key={_id}>
+        <TaskDiv key={task_id}>
             <h2>{title}</h2>
             <p>{description}</p>
             <p>{date}</p>
