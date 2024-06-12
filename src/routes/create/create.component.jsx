@@ -44,7 +44,7 @@ const Create = () => {
         try {
             const response = await fetch(process.env.REACT_APP_BASE_URL + '/create-task', {
                 method: "POST",
-                mode: 'no-cors',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -53,7 +53,7 @@ const Create = () => {
             if (response.status === 200) {
                 const res = await fetch(process.env.REACT_APP_BASE_URL + '/get/tasks', {
                     method: 'POST',
-                    mode: 'no-cors',
+                    mode: 'cors',
                     headers: {
 
                         'Content-Type': 'application/json'

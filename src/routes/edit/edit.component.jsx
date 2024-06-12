@@ -38,7 +38,7 @@ const Edit = () => {
         event.preventDefault();
         const response = await fetch(process.env.REACT_APP_BASE_URL + '/edit/task', {
             method: "PATCH",
-            mode: 'no-cors',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -47,8 +47,8 @@ const Edit = () => {
         if (response.status === 200) {
             const res = await fetch(process.env.REACT_APP_BASE_URL + '/get/tasks', {
                 method: 'POST',
+                mode: 'cors',
                 headers: {
-                    'mode': 'no-cors',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(currentUser)

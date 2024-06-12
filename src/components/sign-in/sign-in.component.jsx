@@ -35,7 +35,7 @@ const SignIn = () => {
     try {
       const response = await fetch(process.env.REACT_APP_BASE_URL + '/auth/login', {
         method: "POST",
-        mode: 'no-cors',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json'
         },

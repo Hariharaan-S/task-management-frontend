@@ -44,7 +44,7 @@ const SignUp = () => {
 
       const response = await fetch(process.env.REACT_APP_BASE_URL + '/auth/register', {
         method: "POST",
-        mode: 'no-cors',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json'
         },

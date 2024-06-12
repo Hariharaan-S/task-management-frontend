@@ -27,7 +27,7 @@ const Home = () => {
         const getPastTasks = async () => {
             const response = await fetch(process.env.REACT_APP_BASE_URL + '/get/pasttasks', {
                 method: "POST",
-                mode: 'no-cors',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json'
                 },
