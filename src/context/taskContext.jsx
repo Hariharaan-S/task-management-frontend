@@ -31,7 +31,7 @@ export const TaskProvider = ({ children }) => {
         if (currentUser != null) {
             getTasks();
         }
-    }, [tasks]);
+    });
 
     return (
         <TaskContext.Provider value={{ tasks, setTasks }}>
