@@ -48,7 +48,7 @@ const SignUp = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: formFields
+        body: JSON.stringify(formFields)
       })
 
       if (response.status === 200) {
