@@ -2,8 +2,8 @@ export const deleteTheTask = async (_id, currentUser) => {
     try {
         const response = await fetch(process.env.REACT_APP_BASE_URL + '/delete/task', {
             method: "DELETE",
+            mode: 'cors',
             headers: {
-                'mode': 'no-cors',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ id: _id })
