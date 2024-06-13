@@ -61,7 +61,8 @@ const Create = () => {
                     body: JSON.stringify(currentUser)
                 })
                 if (res.status === 200) {
-                    setTasks(await res.json().message)
+                    const updated = await res.json()
+                    setTasks(updated.message)
                     navigate('/')
                 }
             }

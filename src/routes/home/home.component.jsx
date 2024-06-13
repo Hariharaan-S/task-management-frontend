@@ -9,19 +9,24 @@ import { TaskWrapper } from '../../components/task/tasks.styles';
 const Home = () => {
     const { currentUser } = useContext(UserContext)
     const { tasks } = useContext(TaskContext)
+    const [contextTask, setContextTask] = useState([]);
     const [pastTasks, setPastTasks] = useState([])
     const [total, setTotal] = useState(0)
     const [doneTasks, setDoneTasks] = useState(0)
     const [dueTasks, setDueTasks] = useState(0)
 
     useEffect(() => {
-        if (currentUser != null && tasks != null && tasks.length > 0) {
-            const temp_tasks = tasks.filter(task => Date.now() > task.due_date)
+        setContextTask(tasks);
+    }, [tasks])
+
+    useEffect(() => {
+        if (currentUser != null && contextTask != null && contextTask.length > 0) {
+            const temp_tasks = contextTask.filter(task => Date.now() > task.due_date)
             temp_tasks.forEach(task => {
                 putTasks(task);
             })
         }
-    }, [currentUser, tasks])
+    }, [currentUser, tasks, contextTask])
 
     useEffect(() => {
         const getPastTasks = async () => {
@@ -47,7 +52,7 @@ const Home = () => {
         if (tasks != null) {
             setDueTasks(tasks.length);
         }
-    }, [tasks]);
+    }, [contextTask, tasks]);
 
     useEffect(() => {
         if (pastTasks != null) {

@@ -19,7 +19,7 @@ const Edit = () => {
         u_id: currentUser.id,
         title: "",
         description: "",
-        due_date: ""
+        due_date: null
     }
 
     const [temp_task, setTemp] = useState(defaultField)
@@ -29,9 +29,14 @@ const Edit = () => {
         setTemp(task)
     }, [params.id, tasks])
 
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setTemp(prevTask => ({ ...prevTask, [name]: value }));
+    };
+
     const handleChange = (event) => {
         setTemp({ ...temp_task, [temp_task.due_date]: event.$d });
-        setTemp({ ...temp_task, [temp_task.task_id]: params.id })
+        setTemp({ ...temp_task, [temp_task.task_id]: params.id });
     };
 
     const handleSubmit = async (event) => {
@@ -54,7 +59,8 @@ const Edit = () => {
                 body: JSON.stringify(currentUser)
             })
             if (res.status === 200) {
-                setTasks(res.json().message)
+                const updated = await res.json();
+                setTasks(updated.message)
                 navigate('/')
             }
         }
@@ -65,10 +71,10 @@ const Edit = () => {
             <h1>Create your task</h1>
             <FormData onSubmit={handleSubmit}>
                 <FormInput><label htmlFor="title">Title</label>
-                    <input className='titleInput' type="text" name="title" id="title" value={temp_task.title} onChange={handleChange} />
+                    <input className='titleInput' type="text" name="title" id="title" value={temp_task.title} onChange={handleInputChange} />
                 </FormInput>
                 <FormInput><label htmlFor="description">Description</label>
-                    <textarea className='descArea' name="description" id="description" cols="50" rows="10" value={temp_task.description} onChange={handleChange}></textarea>
+                    <textarea className='descArea' name="description" id="description" cols="50" rows="10" value={temp_task.description} onChange={handleInputChange}></textarea>
                 </FormInput>
                 <FormInput><label htmlFor="date">Due Date</label>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
