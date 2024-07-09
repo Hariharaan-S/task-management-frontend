@@ -1,6 +1,7 @@
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import DoneIcon from '@mui/icons-material/Done';
 import { PopupBody, Button, ButtonWrapper, TaskDiv } from './tasks.styles'
 import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import { useNavigate } from 'react-router';
@@ -37,9 +38,10 @@ const Task = ({ option, past }) => {
             <h2>{title}</h2>
             <p>{description}</p>
             <p>{date}</p>
-            <div>
+            <div key={task_id}>
                 {
                     !past && <ButtonWrapper>
+                        <Button onClick={deleteFunction} type="button"><DoneIcon /></Button>
                         <Button onClick={NavigateHandler} type="button"><EditNoteIcon /></Button>
                         <Button onClick={deleteFunction} type="button"><DeleteIcon /></Button>
                         <Button aria-describedby={id} type="button" onClick={handleClick}><VisibilityIcon /></Button>

@@ -33,8 +33,12 @@ const Create = () => {
     };
 
     const handleDateChange = (newDate) => {
+        const date = new Date(newDate);
+        const difference = date.getTimezoneOffset();
+        const adjustedTimestamp = date.getTime() - (difference * 60 * 1000);
+        const changedDate = new Date(adjustedTimestamp);
         if (newDate) {
-            setFields({ ...fields, date: newDate ? newDate : null });
+            setFields({ ...fields, date: changedDate });
         }
 
     };

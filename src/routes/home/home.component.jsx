@@ -100,7 +100,7 @@ const Home = () => {
             <TaskWrapper>
 
                 {tasks && tasks.length > 0 ? (tasks.map(task => (
-                    <Task option={task} />
+                    <Task option={task} key={task.task_id} />
                 ))) : (
                     <p>No Upcoming Tasks</p>
                 )}
