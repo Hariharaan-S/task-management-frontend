@@ -14,7 +14,7 @@ export const TaskProvider = ({ children }) => {
 
     useEffect(() => {
         const getTasks = async () => {
-            await fetch(process.env.REACT_APP_BASE_URL + '/get/tasks', {
+            await fetch(process.env.REACT_APP_BASE_TASK_URL + '/getpresenttasks', {
                 method: "POST",
                 mode: 'cors',
                 headers: {

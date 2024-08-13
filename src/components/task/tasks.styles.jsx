@@ -84,6 +84,8 @@ export const TaskWrapper = styled('div')(
     display: flex;
     flex-direction: row;
     column-gap: 3rem;
+    row-gap: 3rem;
+    flex-wrap: wrap;
     @media (max-width: 768px){
     position: relative;
         display: flex;

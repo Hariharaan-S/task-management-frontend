@@ -33,7 +33,7 @@ const SignIn = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch(process.env.REACT_APP_BASE_URL + '/auth/login', {
+      const response = await fetch(process.env.REACT_APP_BASE_USER_URL + '/login', {
         method: "POST",
         mode: 'cors',
         headers: {

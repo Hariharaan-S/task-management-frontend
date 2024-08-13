@@ -9,8 +9,9 @@ import { useContext, useState } from 'react';
 import { TaskContext } from '../../context/taskContext';
 import { deleteTheTask } from '../../utilities/operation.utility';
 import { UserContext } from '../../context/user.context';
+import { doneTask } from '../../utilities/done.utility';
 
-const Task = ({ option, past }) => {
+const Task = ({ option, past, done }) => {
     const { task_id, title, description, due_date } = option
     const { currentUser } = useContext(UserContext)
     var date = new Date(due_date)
@@ -33,15 +34,23 @@ const Task = ({ option, past }) => {
 
     }
 
+    const markAsDoneHandler = async () => {
+        const updatedTasks = await doneTask(task_id, currentUser)
+        setTasks(updatedTasks)
+    }
+
     return (
         <TaskDiv key={task_id}>
+            {
+                done && <h2>Marked Done</h2>
+            }
             <h2>{title}</h2>
             <p>{description}</p>
             <p>{date}</p>
             <div key={task_id}>
                 {
                     !past && <ButtonWrapper>
-                        <Button onClick={deleteFunction} type="button"><DoneIcon /></Button>
+                        {/* <Button onClick={markAsDoneHandler} type="button" disabled={true}><DoneIcon /></Button> */}
                         <Button onClick={NavigateHandler} type="button"><EditNoteIcon /></Button>
                         <Button onClick={deleteFunction} type="button"><DeleteIcon /></Button>
                         <Button aria-describedby={id} type="button" onClick={handleClick}><VisibilityIcon /></Button>

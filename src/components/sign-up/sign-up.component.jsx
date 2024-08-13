@@ -42,7 +42,7 @@ const SignUp = () => {
 
     try {
 
-      const response = await fetch(process.env.REACT_APP_BASE_URL + '/auth/register', {
+      const response = await fetch(process.env.REACT_APP_BASE_USER_URL + '/registeruser', {
         method: "POST",
         mode: 'cors',
         headers: {

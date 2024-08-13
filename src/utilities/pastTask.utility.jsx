@@ -1,6 +1,6 @@
 
 export const putTasks = async (task) => {
-    await fetch(process.env.REACT_APP_BASE_URL + 'past', {
+    await fetch(process.env.REACT_APP_BASE_TASK_URL + 'past', {
         method: "POST",
         mode: 'cors',
         headers: {

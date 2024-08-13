@@ -11,6 +11,7 @@ const Home = () => {
     const { tasks } = useContext(TaskContext)
     const [contextTask, setContextTask] = useState([]);
     const [pastTasks, setPastTasks] = useState([])
+    const [tasksDone, setTasksDone] = useState([]);
     const [total, setTotal] = useState(0)
     const [doneTasks, setDoneTasks] = useState(0)
     const [dueTasks, setDueTasks] = useState(0)
@@ -30,7 +31,7 @@ const Home = () => {
 
     useEffect(() => {
         const getPastTasks = async () => {
-            const response = await fetch(process.env.REACT_APP_BASE_URL + '/get/pasttasks', {
+            const response = await fetch(process.env.REACT_APP_BASE_TASK_URL + '/getduepasttasks', {
                 method: "POST",
                 mode: 'cors',
                 headers: {
@@ -43,8 +44,23 @@ const Home = () => {
                 setPastTasks(res.message)
             }
         }
+        const getTasksDone = async () => {
+            const response = await fetch(process.env.REACT_APP_BASE_TASK_URL + '/getdonetasks', {
+                method: "POST",
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(currentUser)
+            })
+            if (response.status === 200) {
+                const res = await response.json()
+                setTasksDone(res.message)
+            }
+        }
         if (currentUser) {
             getPastTasks();
+            getTasksDone();
         }
     }, [currentUser])
 
@@ -55,10 +71,8 @@ const Home = () => {
     }, [contextTask, tasks]);
 
     useEffect(() => {
-        if (pastTasks != null) {
-            setDoneTasks(pastTasks.length);
-        }
-    }, [pastTasks]);
+        pastTasks && tasksDone && setDoneTasks(pastTasks.length + tasksDone.length);
+    }, [pastTasks, tasksDone]);
 
     useEffect(() => {
         setTotal(dueTasks + doneTasks);
@@ -84,6 +98,15 @@ const Home = () => {
 
                 </PastTask>
             </TaskCount>
+            <h2>Upcoming Tasks</h2>
+            <TaskWrapper>
+
+                {tasks && tasks.length > 0 ? (tasks.map(task => (
+                    <Task option={task} key={task.task_id} />
+                ))) : (
+                    <p>No Upcoming Tasks</p>
+                )}
+            </TaskWrapper>
             <h2>Past Tasks</h2>
             <TaskWrapper>
 
@@ -96,13 +119,13 @@ const Home = () => {
                     <p>No past tasks available.</p>
                 )}
             </TaskWrapper>
-            <h2>Upcoming Tasks</h2>
+            <h2>Tasks Done</h2>
             <TaskWrapper>
 
-                {tasks && tasks.length > 0 ? (tasks.map(task => (
-                    <Task option={task} key={task.task_id} />
+                {tasksDone && tasksDone.length > 0 ? (tasksDone.map(task => (
+                    <Task option={task} done={true} key={task.task_id} />
                 ))) : (
-                    <p>No Upcoming Tasks</p>
+                    <p>No Tasks done</p>
                 )}
             </TaskWrapper>
 

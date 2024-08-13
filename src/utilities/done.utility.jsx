@@ -1,7 +1,7 @@
-export const deleteTheTask = async (_id, currentUser) => {
+export const doneTask = async (_id, currentUser) => {
     try {
-        const response = await fetch(process.env.REACT_APP_BASE_TASK_URL + '/delete/task', {
-            method: "DELETE",
+        const response = await fetch(process.env.REACT_APP_BASE_TASK_URL + '/markdone', {
+            method: "POST",
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
