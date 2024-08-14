@@ -1,7 +1,6 @@
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import DoneIcon from '@mui/icons-material/Done';
 import { PopupBody, Button, ButtonWrapper, TaskDiv } from './tasks.styles'
 import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import { useNavigate } from 'react-router';
@@ -9,7 +8,7 @@ import { useContext, useState } from 'react';
 import { TaskContext } from '../../context/taskContext';
 import { deleteTheTask } from '../../utilities/operation.utility';
 import { UserContext } from '../../context/user.context';
-import { doneTask } from '../../utilities/done.utility';
+// import { doneTask } from '../../utilities/done.utility';
 
 const Task = ({ option, past, done }) => {
     const { task_id, title, description, due_date } = option
@@ -34,10 +33,10 @@ const Task = ({ option, past, done }) => {
 
     }
 
-    const markAsDoneHandler = async () => {
-        const updatedTasks = await doneTask(task_id, currentUser)
-        setTasks(updatedTasks)
-    }
+    // const markAsDoneHandler = async () => {
+    //     const updatedTasks = await doneTask(task_id, currentUser)
+    //     setTasks(updatedTasks)
+    // }
 
     return (
         <TaskDiv key={task_id}>
